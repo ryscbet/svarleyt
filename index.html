@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scarlett Raine — Photography Portfolio</title>
+<meta name="description" content="Photography by Scarlett Raine — events, landscape, and portrait work shot on Fujifilm XT10." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=Italianno&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D0F2B; --navy-deep:#08091C; --blush:#E8A0BF; --blush-soft:#F4C8D8;
+    --ivory:#F5F3EF; --muted:#8B8A9A; --border:rgba(245,243,239,0.08);
+    --display:"Cormorant Garamond",serif; --body:"Inter",system-ui,sans-serif; --script:"Italianno",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;border-color:var(--border);}
+  html{scroll-behavior:smooth;}
+  body{background:var(--navy);color:var(--ivory);font-family:var(--body);font-weight:300;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--blush);color:var(--navy);}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;height:auto;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:0.28em;color:var(--blush);}
+  .muted{color:var(--muted);}
+  .italic{font-family:var(--display);font-style:italic;}
+
+  /* Hero */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;text-align:center;}
+  .hero::before,.hero::after{content:"";position:absolute;width:40rem;height:40rem;border-radius:50%;filter:blur(120px);pointer-events:none;}
+  .hero::before{top:-10rem;left:-10rem;background:rgba(232,160,191,0.10);}
+  .hero::after{bottom:-10rem;right:-10rem;background:rgba(232,160,191,0.06);}
+  .hero h1{font-family:var(--script);font-weight:400;font-size:clamp(4rem,14vw,11rem);line-height:.9;}
+  .hero h1 span{color:var(--blush);}
+  .hero .sub{margin-top:24px;font-family:var(--display);font-style:italic;font-size:clamp(1.1rem,2vw,1.5rem);color:rgba(245,243,239,0.8);}
+  .hero .contact{margin-top:64px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:center;font-size:11px;text-transform:uppercase;letter-spacing:0.28em;color:var(--muted);}
+  .hero .contact a:hover{color:var(--blush);}
+  .fade-in{animation:fade .9s ease-out both;}
+  .delay-1{animation-delay:.2s} .delay-2{animation-delay:.5s} .delay-3{animation-delay:.9s} .delay-4{animation-delay:1.3s}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  /* Series */
+  .series{padding:120px 0;}
+  .series h2{font-family:var(--display);font-weight:500;font-size:clamp(2rem,5vw,3.75rem);line-height:1.05;max-width:42rem;margin-top:16px;}
+  .series-grid{display:grid;grid-template-columns:1fr;gap:80px 64px;margin-top:80px;}
+  @media(min-width:780px){.series-grid{grid-template-columns:1fr 1fr;}}
+  .series-grid article h3{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,3vw,2.2rem);margin:16px 0;transition:color .5s;}
+  .series-grid article:hover h3{color:var(--blush);}
+  .series-grid article p{color:rgba(245,243,239,0.7);line-height:1.7;max-width:60ch;}
+  .series-grid .meta{display:flex;align-items:baseline;gap:16px;font-size:10px;text-transform:uppercase;letter-spacing:0.28em;color:rgba(245,243,239,0.4);}
+  .series-grid .num{font-family:var(--display);font-style:italic;font-size:1.1rem;color:rgba(232,160,191,0.6);letter-spacing:0;text-transform:none;}
+
+  /* Filter */
+  .filter{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(13,15,43,.7);border-bottom:1px solid var(--border);}
+  .filter-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 32px;padding:20px 24px;}
+  .filter button{background:none;border:0;cursor:pointer;color:rgba(245,243,239,0.6);font:inherit;font-size:11px;text-transform:uppercase;letter-spacing:0.28em;padding:0;}
+  .filter button:hover,.filter button.active{color:var(--blush);}
+  .filter button .underline{display:block;height:1px;background:var(--blush);width:0;margin-top:6px;transition:width .5s;}
+  .filter button.active .underline,.filter button:hover .underline{width:100%;}
+
+  /* Masonry */
+  .grid-wrap{padding:64px 0;}
+  .masonry{column-count:1;column-gap:16px;}
+  @media(min-width:600px){.masonry{column-count:2;}}
+  @media(min-width:900px){.masonry{column-count:3;}}
+  @media(min-width:1280px){.masonry{column-count:4;}}
+  figure{break-inside:avoid;margin:0 0 16px;position:relative;border-radius:12px;overflow:hidden;background:var(--navy-deep);}
+  figure img{transition:transform 1.2s ease;}
+  figure:hover img{transform:scale(1.05);}
+  figcaption{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .5s;background:linear-gradient(to top,rgba(13,15,43,.95),rgba(13,15,43,.4) 40%,transparent);pointer-events:none;}
+  figure:hover figcaption{opacity:1;}
+  .badge{display:inline-block;width:fit-content;font-size:10px;text-transform:uppercase;letter-spacing:0.28em;background:var(--blush);color:var(--navy);padding:5px 10px;border-radius:999px;margin-bottom:12px;}
+  figcaption p{font-family:var(--display);font-style:italic;color:var(--ivory);line-height:1.4;max-width:28ch;}
+
+  /* About */
+  .about{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:120px 0;}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:64px;}
+  @media(min-width:780px){.about-grid{grid-template-columns:1fr 1fr;gap:96px;}}
+  .about h2{font-family:var(--display);font-weight:500;font-size:clamp(1.8rem,4vw,3rem);line-height:1.2;margin:24px 0 32px;}
+  .about p{color:rgba(245,243,239,0.7);line-height:1.7;margin-bottom:20px;max-width:60ch;}
+  .philos{display:flex;flex-direction:column;gap:24px;}
+  .philo{border:1px solid var(--border);border-radius:12px;padding:28px;display:flex;gap:20px;transition:border-color .5s;}
+  .philo:hover{border-color:rgba(232,160,191,.4);}
+  .philo .glyph{color:var(--blush);font-size:1.5rem;line-height:1;margin-top:4px;}
+  .philo h3{font-family:var(--display);font-weight:500;font-size:1.5rem;margin-bottom:8px;}
+  .philo small{color:rgba(245,243,239,.65);font-size:14px;line-height:1.6;}
+
+  /* Footer */
+  footer{background:var(--navy-deep);padding:96px 0;}
+  footer .inner{border-top:1px solid var(--border);padding-top:64px;}
+  footer h2{font-family:var(--script);font-weight:400;font-size:clamp(3.5rem,9vw,6rem);line-height:1;margin:24px 0 40px;}
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:64px;}
+  @media(min-width:780px){.contact-grid{grid-template-columns:repeat(3,1fr);}}
+  .contact-grid .k{font-size:10px;text-transform:uppercase;letter-spacing:0.28em;color:rgba(245,243,239,.4);margin-bottom:8px;}
+  .contact-grid .v{font-family:var(--display);font-size:1.25rem;}
+  .contact-grid .v a:hover{color:var(--blush);}
+  .colophon{margin-top:80px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:0.28em;color:rgba(245,243,239,.3);}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="label fade-in delay-1">Photographer · Fujifilm XT10</p>
+  <h1 class="fade-in delay-2" style="margin-top:32px;">Scarlett's <span>portfolio</span></h1>
+  <p class="sub fade-in delay-3">Events · Landscape · Portrait</p>
+  <div class="contact fade-in delay-4">
+    <a href="mailto:scarlettyang.rs@gmail.com">scarlettyang.rs@gmail.com</a>
+    <span style="opacity:.4">·</span>
+    <a href="tel:+85253403935">+852 5340 3935</a>
+  </div>
+</section>
+
+<section class="series wrap" id="series">
+  <p class="label">The Series</p>
+  <h2>Four ongoing bodies of work.</h2>
+  <div class="series-grid">
+    <article>
+      <div class="meta"><span class="num">01</span><span>Portraits</span></div>
+      <h3>Capture You</h3>
+      <p>Honest portraits — candid and styled — of the people in front of the lens. The work centers presence over performance: a quiet jaw, an unguarded laugh, the way light finds a cheekbone at golden hour.</p>
+    </article>
+    <article>
+      <div class="meta"><span class="num">02</span><span>Landscape</span></div>
+      <h3>Capturecations</h3>
+      <p>A travel log in frames. Gothic spires, neon-soaked streets, the harbor at dusk, eucalyptus-scrubbed coastlines — places appreciated slowly, then pressed into a single still.</p>
+    </article>
+    <article>
+      <div class="meta"><span class="num">03</span><span>Events</span></div>
+      <h3>Capture,Vibe!</h3>
+      <p>The pulse of the room — concerts, galas, prom nights, church gatherings. Movement, sweat, confetti and stage-light. Commemorating energy as it happens, not after it cools.</p>
+    </article>
+    <article>
+      <div class="meta"><span class="num">04</span><span>Volunteering</span></div>
+      <h3>CaptureKind</h3>
+      <p>Photography in service of organizations doing good work. Women's workshops, community days, school programs — documenting the people who quietly build kinder rooms.</p>
+    </article>
+  </div>
+</section>
+
+<section id="work">
+  <div class="filter">
+    <div class="filter-inner" id="filter">
+      <button data-cat="All" class="active">All<span class="underline"></span></button>
+      <button data-cat="CaptureKind">CaptureKind<span class="underline"></span></button>
+      <button data-cat="Capture,Vibe!">Capture,Vibe!<span class="underline"></span></button>
+      <button data-cat="Capturecations">Capturecations<span class="underline"></span></button>
+      <button data-cat="Capture You">Capture You<span class="underline"></span></button>
+    </div>
+  </div>
+  <div class="grid-wrap wrap">
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="label">About</p>
+      <h2>A Fujifilm XT10, three years of practice, and a soft spot for the in-between moments.</h2>
+      <p>Scarlett Raine is a Hong Kong–based photographer working across events, landscape and portrait. Her practice moves between service work for volunteer organizations, travel-led location studies, and quiet portraiture.</p>
+      <p>What ties it together is restraint — a preference for honest light, generous negative space, and the breath before the picture is taken.</p>
+    </div>
+    <div class="philos">
+      <div class="philo"><span class="glyph">✶</span><div><h3>CaptureKind</h3><small>Photography as service — lending the lens to causes that build kinder rooms.</small></div></div>
+      <div class="philo"><span class="glyph">✸</span><div><h3>Capturecations</h3><small>Travel slowed down — cities, churches, and coastlines studied frame by frame.</small></div></div>
+      <div class="philo"><span class="glyph">✦</span><div><h3>Capture You</h3><small>Portraits of presence — people as they actually are, not as they pose.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap inner">
+    <p class="label">Get in touch</p>
+    <h2>Let's make something.</h2>
+    <div class="contact-grid">
+      <div><div class="k">Name</div><div class="v">Scarlett Raine</div></div>
+      <div><div class="k">Email</div><div class="v"><a href="mailto:scarlettyang.rs@gmail.com">scarlettyang.rs@gmail.com</a></div></div>
+      <div><div class="k">Phone · Instagram</div><div class="v">+852 5340 3935</div><div class="v italic" style="color:var(--blush);margin-top:4px;">@feveringed</div></div>
+    </div>
+    <div class="colophon"><span>© 2026 Scarlett Raine</span><span>Shot on Fujifilm XT10</span></div>
+  </div>
+</footer>
+
+<script>
+  const blurbs = {
+    "CaptureKind":"Volunteer photography for organizations creating positive change.",
+    "Capture,Vibe!":"Capturing the vibe — energy, movement, and commemoration.",
+    "Capturecations":"Cities, architecture, and nature — appreciation through a lens.",
+    "Capture You":"Professional and candid portraits — people as they are."
+  };
+  const seeds = {
+    "CaptureKind":["kind1","kind2","kind3","kind4","kind5","kind6","kind7","kind8","kind9"],
+    "Capture,Vibe!":["vibe1","vibe2","vibe3","vibe4","vibe5","vibe6","vibe7","vibe8","vibe9"],
+    "Capturecations":["cap1","cap2","cap3","cap4","cap5","cap6","cap7","cap8","cap9","cap10"],
+    "Capture You":["you1","you2","you3","you4","you5","you6","you7"]
+  };
+  const heights = [600,800,500,900,700,650,850,550,750,720];
+  const photos = [];
+  Object.keys(seeds).forEach(cat => {
+    seeds[cat].forEach((s,i) => {
+      photos.push({cat, src:`https://picsum.photos/seed/${s}/600/${heights[i%heights.length]}`, blurb:blurbs[cat]});
+    });
+  });
+
+  const grid = document.getElementById("masonry");
+  function render(filter){
+    grid.innerHTML = "";
+    photos.filter(p => filter==="All" || p.cat===filter).forEach(p => {
+      const fig = document.createElement("figure");
+      fig.innerHTML = `<img src="${p.src}" alt="${p.cat}" loading="lazy"><figcaption><span class="badge">${p.cat}</span><p>"${p.blurb}"</p></figcaption>`;
+      grid.appendChild(fig);
+    });
+  }
+  render("All");
+
+  document.querySelectorAll("#filter button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#filter button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render(btn.dataset.cat);
+    });
+  });
+</script>
+</body>
+</html>
